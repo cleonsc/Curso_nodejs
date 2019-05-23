@@ -1,4 +1,10 @@
 var Cliente = require("./cliente.js");
-var clienteGitHub = new Cliente("github.com", "443", "https");
+var clienteGitHub = new Cliente("api.github.com", "443", "https");
 
 console.log(clienteGitHub);
+
+//autenticar nuestro cliente...
+
+clienteGitHub.get("/users/cleonsc", (respuesta)=>{
+    console.log(respuesta);
+});
