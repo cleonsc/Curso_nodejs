@@ -10,11 +10,20 @@ class Cliente{
         }
     }
 
+    //metodo de autenticacion HTTP BASIC
+
+    autenticarBasic(user,pass){
+        this.basicAuth = new Buffer(user+":"+pass).toString("base64"); //ascci, hex, base64
+    }
+
     //Procesar HEADERS para mantener sesion -> se realiza en la peticion(request)
     procesarHeaders(){
         var headers = {
             "Accept": "*/*",
             "User-Agent":"Cliente de nodejs"
+        }
+        if(this.basicAuth != undefined){
+            headers.Autorization = "Basic "+this.basicAuth;
         }
         return headers;
     }
