@@ -1,5 +1,7 @@
 // cliente HTTP/HTTPS
 //github.com/cleonsc
+
+const fs = require('fs');
 class Cliente{
     constructor(host, puerto, protocolo){
         this.host = host;
@@ -8,6 +10,7 @@ class Cliente{
         if(this.protocolo !='http' && this.protocolo !='https'){
             console.log("ERROR!!!");
         }
+        this.logDir = fs.mkdtempSync("/tmp/cliente-http-");
     }
 
     //metodo de autenticacion HTTP BASIC
@@ -70,6 +73,10 @@ class Cliente{
             canalRespuesta.on('end', ()=>{
                 respuesta.status = canalRespuesta.statusCode;
                 respuesta.headers = canalRespuesta.headers;
+                fs.appendFile(this.logDir+"/cliente.log","lorem ipsum\n",(err) => {
+                    if (err) throw err;
+                    console.log('The "data to append" was appended to file!');
+                  });
                 callback(respuesta);
             });
         });
