@@ -37,16 +37,24 @@ class Cliente{
             path: this.protocolo+"://"+this.host+uri, // https://api.github.com/cleonsc //jorgevgut
             headers: this.procesarHeaders()
         };
-        this.request(opciones, callback);
+        this.request(opciones, null, callback);
     }
 
-    post(uri, data){
+    post(uri, data, callback){
+        var opciones = {
+            hostname: this.host,
+            port: this.puerto,
+            method: 'POST',
+            path: this.protocolo+"://"+this.host+uri, // https://api.github.com/cleonsc //jorgevgut
+            headers: this.procesarHeaders()
+        };
 
+        this.request(opciones, data, callback);
     }
     
 
     //request (manejo de peticiones)
-    request(opciones, callback){
+    request(opciones, data, callback){
         //http o https
         var http = require(this.protocolo);//http, o https
         var respuesta = {
@@ -65,7 +73,9 @@ class Cliente{
                 callback(respuesta);
             });
         });
-
+        if(data != undefined && data != null){
+            peticion.write(JSON.stringify(data));
+        }
         peticion.end();
     }
 }
