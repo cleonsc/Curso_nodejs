@@ -13,7 +13,7 @@ class Cliente{
     //metodo de autenticacion HTTP BASIC
 
     autenticarBasic(user,pass){
-        this.basicAuth = new Buffer(user+":"+pass).toString("base64"); //ascci, hex, base64
+        this.basicAuth = new Buffer.from(user+":"+pass).toString("base64"); //ascci, hex, base64
     }
 
     //Procesar HEADERS para mantener sesion -> se realiza en la peticion(request)
