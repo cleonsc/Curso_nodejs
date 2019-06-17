@@ -1,0 +1,17 @@
+Proyecto: Mercado en Linea
+
+1.- Usuario va a iniciar session (registro login/logout)
+2.- Puede hacer un carrito
+3.- Realizar el pedido
+
+//Base de datos
+- usuarios
+- productos
+- carrito
+- pedidos
+
+//API
+
+/gestion de pedidos
+/gestion de carrito de compras (por usuario)
+*gestion de productos del mercado en linea
